@@ -10,7 +10,7 @@ If there are two middle nodes, return **the second middle** node.
 
 **Example 1:**
 
-![[assets/Middle of the Linked List - LeetCode/lc-midlist1.jpg]]
+![](assets/Middle%20of%20the%20Linked%20List%20-%20LeetCode/lc-midlist1.jpg)
 
 **Input:** head = [1,2,3,4,5]
 **Output:** [3,4,5]
@@ -18,7 +18,7 @@ If there are two middle nodes, return **the second middle** node.
 
 **Example 2:**
 
-![[assets/Middle of the Linked List - LeetCode/lc-midlist2.jpg]]
+![](assets/Middle%20of%20the%20Linked%20List%20-%20LeetCode/lc-midlist2.jpg)
 
 **Input:** head = [1,2,3,4,5,6]
 **Output:** [4,5,6]
