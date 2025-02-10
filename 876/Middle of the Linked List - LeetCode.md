@@ -1,8 +1,9 @@
 ---
-source: https://leetcode.cn/problems/middle-of-the-linked-list/description/
+source: https://leetcode.com/problems/middle-of-the-linked-list/description/
 created: 2025-02-04T14:01:11
 tags:
   - Easy
+  - Review
 ---
 Given the `head` of a singly linked list, return _the middle node of the linked list_.
 
