@@ -101,51 +101,47 @@ class BST {
                 $cur = $cur->right;
             }
         }
+
         if ($cur === null) {
-            $this->root = null;
             return $this;
         }
 
-        if ($cur->left && $cur->right) {
-            $cut = $cur->left;
-            if ($pre === null) {
-                $x = $root = $cur->right;
-            } else {
-                if ($pre->val > $cur->val) {
-                    $x = $pre->left = $cur->right;
-                } else {
-                    $x = $pre->right = $cur->right;
-                }
-            }
-            while ($x->left) {
-                $x = $x->left;
-            }
-            $x->left = $cut;
-        }
-        if ($cur->left === null && $cur->right === null) {
-            if ($pre === null) {
-                $this->root = null;
+        if ($pre === null) {
+            if (!$cur->left) {
+                $this->root = $cur->right;
                 return $this;
             }
-            if ($pre->val > $val) {
-                $pre->left = null;
-            } else {
-                $pre->right = null;
-            }
-        } else {
-            if ($pre === null) {
-                $cur->left && $this->root = $cur->left;
-                $cur->right && $this->root = $cur->right;
-            } else {
-                if ($pre->val > $cur->val) {
-                    $cur->left && $pre->left = $cur->left;
-                    $cur->right && $pre->left = $cur->right;
-                } else {
-                    $cur->left && $pre->right= $cur->left;
-                    $cur->right && $pre->right = $cur->right;
-                }
+            if (!$cur->right) {
+                $this->root = $cur->left;
+                return $this;
             }
         }
+
+        if (!$cur->left) {
+            if ($pre->val > $cur->val) {
+                $pre->left = $cur->right;
+            } else {
+                $pre->right = $cur->right;
+            }
+            return $this;
+        }
+
+        if (!$cur->right) {
+            if ($pre->val > $cur->val) {
+                $pre->left = $cur->left;
+            } else {
+                $pre->right = $cur->left;
+            }
+            return $this;
+        }
+
+        // node replacement instead of subtree attachment
+        $tmp = $cur->right;
+        while ($tmp->left) {
+            $tmp = $tmp->left;
+        }
+        $this->remove($tmp->val);
+        $cur->val = $tmp->val;
         return $this;
     }
 

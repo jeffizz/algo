@@ -152,21 +152,15 @@ class AVL
         } elseif ($node->val < $val) {
             $node->right = self::removeRecursion($node->right, $val);
         } else {
-            if ($node->left && $node->right) {
-                $subtree = $node->left;
-                $x = $node->right;
-                while ($x->left) {
-                    $x = $x->left;
-                }
-                $x->left = $subtree;
-                return $node->right;
+            if (!$node->left) return $node->right;
+            if (!$node->right) return $node->left;
+            // node replacement instead of subtree attachment
+            $tmp = $node->right;
+            while ($tmp->left) {
+                $tmp = $tmp->left;
             }
-            if (!$node->left && !$node->right) {
-                return null;
-            } else {
-                if ($node->left) return $node->left;
-                if ($node->right) return $node->right;
-            }
+            $node->right = $this->removeRecursion($node->right, $tmp->val);
+            $node->val = $tmp->val;
         }
         // Backtracking
         self::updateHeight($node);
